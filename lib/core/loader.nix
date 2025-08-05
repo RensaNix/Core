@@ -47,7 +47,6 @@
         }
         else throw "Neither ${blockP.file} nor ${blockP.dir} exist, this shouldn't happen!";
 
-      targetTracer = name: l.traceVerbose "[ren] loading, system=${system} path=${importPaths.importPath} name=${name}";
       imported = import' importPaths.importPath;
       isAttrs = builtins.isAttrs imported;
 
@@ -70,7 +69,7 @@
                 )
               else {};
           in {
-            init = targetTracer name {
+            init = l.traceVerbose "[ren] loading, system=${system} path=${importPaths.importPath} name=${name}" {
               inherit name;
               actions =
                 l.mapAttrsToList (name: a: {

@@ -11,11 +11,8 @@
     rensa.buildWith {
       inherit inputs;
       cellsFrom = ./cells;
-      cellBlocks = [
-        {
-          name = "test";
-          type = "test";
-        }
+      cellBlocks = with rensa.blocks; [
+        (simple "test")
       ];
     } {};
 }
