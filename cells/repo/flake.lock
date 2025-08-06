@@ -1,0 +1,28 @@
+{
+  "nodes": {
+    "devshell": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1753958239,
+        "narHash": "sha256-J0B5rfQAza9UKSqnKINn++AsrMWxG3/oTqVUt3QRlWk=",
+        "owner": "rensa-nix",
+        "repo": "devshell",
+        "rev": "fbacfc149b59acf68efa97951418a9a7a7022707",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "rensa-nix",
+        "repo": "devshell",
+        "type": "gitlab"
+      }
+    },
+    "root": {
+      "inputs": {
+        "devshell": "devshell"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

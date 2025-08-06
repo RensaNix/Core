@@ -13,6 +13,7 @@
       cellsFrom = ./cells;
       cellBlocks = with rensa.blocks; [
         (simple "test")
+        (simple "devShells")
       ];
     } {};
 }

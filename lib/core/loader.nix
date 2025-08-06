@@ -22,7 +22,13 @@
         cell = cells // {__cr = [cellName cellBlock.name];};
         additionalInputs =
           if l.pathExists cellP.flake
-          then (callFlake (builtins.dirOf cellP.flake) {root.parent = inputs;}).outputs
+          then
+            (callFlake (builtins.dirOf cellP.flake) {
+              root = {
+                parent = inputs;
+                system = system;
+              };
+            }).outputs
           else {};
       in
         importSignatureFor system cell cells additionalInputs;

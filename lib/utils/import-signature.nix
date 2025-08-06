@@ -28,7 +28,7 @@
         inherit self;
         cells = deSystemize system cells;
       };
-    inherit cell;
+    inherit cell system;
   };
 in {
   inherit deSystemize createImportSignature;
