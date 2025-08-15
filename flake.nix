@@ -11,6 +11,11 @@
   in
     rensa.buildWith {
       inherit inputs;
+      transformInputs = system: i:
+        i
+        // {
+          pkgs = import i.nixpkgs {inherit system;};
+        };
       cellsFrom = ./cells;
       cellBlocks = with rensa.blocks; [
         (simple "test")

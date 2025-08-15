@@ -22,12 +22,13 @@
         rev = cfg.inputs.self.sourceInfo.rev or "not-a-commit";
       };
   in {
-    inputs =
+    inputs = cfg.transformInputs system (
       (deSystemize system (cfg.inputs // additionalInputs))
       // {
         inherit self;
         cells = deSystemize system cells;
-      };
+      }
+    );
     inherit cell system;
   };
 in {

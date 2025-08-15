@@ -1,7 +1,8 @@
 {inputs, ...}: let
-  inherit (inputs) pkgs devshellLib;
+  inherit (inputs) pkgs dslib;
 in {
-  default = devshellLib.mkShell {
+  default = dslib.mkShell {
     packages = [pkgs.alejandra];
+    enterShellCommands."ren".text = "echo Hello rensa!";
   };
 }

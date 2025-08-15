@@ -10,6 +10,7 @@
     inputs,
     cellsFrom,
     cellBlocks,
+    transformInputs ? system: i: i,
     systems ? [
       "x86_64-linux"
       "aarch64-linux"
@@ -21,7 +22,7 @@
 
     loadOutputFor = system: let
       loadCell = createCellLoader {
-        inherit inputs system cells cellsFrom cellBlocks;
+        inherit inputs system cells cellsFrom cellBlocks transformInputs;
       };
 
       cells' = l.mapAttrsToList (cell: type: cell) (l.readDir cellsFrom);

@@ -10,8 +10,9 @@
     inputs,
     system,
     cells,
+    transformInputs,
   }: let
-    importSignatureFor = createImportSignature {inherit inputs;};
+    importSignatureFor = createImportSignature {inherit inputs transformInputs;};
 
     loadCellBlock = cellName: cellP: cellBlock: let
       blockP = paths.cellBlockPath cellP cellBlock;
@@ -25,8 +26,8 @@
           then
             (callFlake (builtins.dirOf cellP.flake) {
               root = {
-                parent = inputs;
-                system = system;
+                parent = transformInputs system inputs;
+                inherit system;
               };
             }).outputs
           else {};
@@ -121,9 +122,10 @@
     cells,
     cellsFrom,
     cellBlocks,
+    transformInputs,
   }: let
     inherit (utils) unique accumulate;
-    loadCellBlock = createCellBlockLoader {inherit inputs system cells;};
+    loadCellBlock = createCellBlockLoader {inherit inputs system cells transformInputs;};
 
     loadCell = cellName: let
       cellP = paths.cellPath cellsFrom cellName;
