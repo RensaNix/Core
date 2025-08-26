@@ -21,7 +21,7 @@
       isDir = l.pathExists blockP.dir;
 
       signature = let
-        cell = cell // {__cr = [cellName cellBlock.name];};
+        updatedCell = cell // {__cr = [cellName cellBlock.name];};
         additionalInputs =
           if l.pathExists cellP.flake
           then
@@ -33,7 +33,7 @@
             }).outputs
           else {};
       in
-        importSignatureFor system cell cells additionalInputs;
+        importSignatureFor system updatedCell cells additionalInputs;
 
       import' = importPath: let
         block = import importPath;
