@@ -9,6 +9,7 @@
   createCellBlockLoader = {
     inputs,
     system,
+    cell,
     cells,
     transformInputs,
   }: let
@@ -20,7 +21,7 @@
       isDir = l.pathExists blockP.dir;
 
       signature = let
-        cell = cells // {__cr = [cellName cellBlock.name];};
+        cell = cell // {__cr = [cellName cellBlock.name];};
         additionalInputs =
           if l.pathExists cellP.flake
           then
@@ -125,11 +126,12 @@
     transformInputs,
   }: let
     inherit (utils) unique accumulate;
-    loadCellBlock = createCellBlockLoader {inherit inputs system cells transformInputs;};
 
     loadCell = cellName: let
+      cell = res.output;
       cellP = paths.cellPath cellsFrom cellName;
       cellBlocks' = (unique cellBlocks).result;
+      loadCellBlock = createCellBlockLoader {inherit inputs system cells cell transformInputs;};
       res = accumulate (l.map (loadCellBlock cellName cellP) cellBlocks');
     in [
       {${cellName} = res.output;}
