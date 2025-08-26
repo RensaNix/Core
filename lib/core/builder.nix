@@ -11,13 +11,23 @@
     cellsFrom,
     cellBlocks,
     transformInputs ? system: i: i,
-    systems ? [
-      "x86_64-linux"
-      "aarch64-linux"
-      "x86_64-darwin"
-      "aarch64-darwin"
-    ],
-  }: let
+    ...
+  } @ args: let
+    # use passed systems if any, otherwise check if inputs contains systems and
+    # import them, otherwise use defaults
+    systems =
+      args.systems or 
+      (
+        if builtins.hasAttr "systems" inputs
+        then import inputs.systems
+        else [
+          "x86_64-linux"
+          "x86_64-darwin"
+          "aarch64-linux"
+          "aarch64-darwin"
+        ]
+      );
+
     cells = res.output;
 
     loadOutputFor = system: let
