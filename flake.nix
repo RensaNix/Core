@@ -20,6 +20,9 @@
       cellBlocks = with rensa.blocks; [
         (simple "test")
         (simple "devShells")
+        (simple "docs")
       ];
-    } {};
+    } {
+      packages = rensa.select inputs.self ["repo" "docs"];
+    };
 }

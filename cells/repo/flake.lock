@@ -3,11 +3,11 @@
     "devshell": {
       "locked": {
         "dir": "lib",
-        "lastModified": 1753958239,
-        "narHash": "sha256-J0B5rfQAza9UKSqnKINn++AsrMWxG3/oTqVUt3QRlWk=",
+        "lastModified": 1755673398,
+        "narHash": "sha256-51MmR+Eo1+bKDd/Ss77wwTqi4yAR2xgmyCSEbKWSpj0=",
         "owner": "rensa-nix",
         "repo": "devshell",
-        "rev": "fbacfc149b59acf68efa97951418a9a7a7022707",
+        "rev": "e76bef387e8a4574f9b6d37b1a424e706491af08",
         "type": "gitlab"
       },
       "original": {
@@ -17,9 +17,27 @@
         "type": "gitlab"
       }
     },
+    "nixmkdocs": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1755785622,
+        "narHash": "sha256-xBb9PCkszmrWSEqUiPC7oBJABm1thF572S5QHtloZ+M=",
+        "owner": "TECHNOFAB",
+        "repo": "nixmkdocs",
+        "rev": "61da605a9bff12f66c4b743f43aea59ca200f533",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "TECHNOFAB",
+        "repo": "nixmkdocs",
+        "type": "gitlab"
+      }
+    },
     "root": {
       "inputs": {
-        "devshell": "devshell"
+        "devshell": "devshell",
+        "nixmkdocs": "nixmkdocs"
       }
     }
   },
