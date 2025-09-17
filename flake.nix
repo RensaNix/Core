@@ -21,8 +21,12 @@
         (simple "test")
         (simple "devShells")
         (simple "docs")
+        (simple "ci")
       ];
     } {
-      packages = rensa.select inputs.self ["repo" "docs"];
+      packages = rensa.select inputs.self [
+        ["repo" "docs"]
+        ["repo" "ci" "packages"]
+      ];
     };
 }

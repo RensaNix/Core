@@ -1,7 +1,13 @@
-{inputs, ...}: let
-  inherit (inputs) pkgs dslib treefmt;
+{
+  inputs,
+  cell,
+  ...
+}: let
+  inherit (inputs) pkgs dslib soonix treefmt;
+  inherit (cell) ci;
 in {
   default = dslib.mkShell {
+    imports = [soonix.devshellModule];
     packages = [
       (treefmt.mkWrapper pkgs {
         programs = {
@@ -12,5 +18,6 @@ in {
       })
     ];
     enterShellCommands."ren".text = "echo Hello rensa!";
+    soonix.hooks.ci = ci.soonix;
   };
 }
