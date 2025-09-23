@@ -20,12 +20,14 @@ in
       };
       config = {
         site_name = "Rensa Core";
+        site_url = "https://rensa.projects.tf";
         repo_name = "rensa-nix/core";
         repo_url = "https://gitlab.com/rensa-nix/core";
+        extra_css = ["style.css"];
         theme = {
-          logo = "images/logo.png";
+          logo = "images/logo.svg";
           icon.repo = "simple/gitlab";
-          favicon = "images/favicon.png";
+          favicon = "images/logo.svg";
         };
         nav = [
           {"Introduction" = "index.md";}
