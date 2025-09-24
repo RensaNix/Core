@@ -52,6 +52,7 @@
     // {
       __ren = {
         __schema = "v0";
+        cells = builtins.attrNames (l.readDir cellsFrom);
         init = l.listToAttrs res.init;
         actions = res.actions;
         cellsFrom = l.baseNameOf cellsFrom;
