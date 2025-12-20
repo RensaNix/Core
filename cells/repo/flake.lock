@@ -3,11 +3,11 @@
     "devshell": {
       "locked": {
         "dir": "lib",
-        "lastModified": 1755673398,
-        "narHash": "sha256-51MmR+Eo1+bKDd/Ss77wwTqi4yAR2xgmyCSEbKWSpj0=",
+        "lastModified": 1758204313,
+        "narHash": "sha256-ainbY0Oajb1HMdvy+A8QxF/P5qwcbEzJGEY5pzKdDdc=",
         "owner": "rensa-nix",
         "repo": "devshell",
-        "rev": "e76bef387e8a4574f9b6d37b1a424e706491af08",
+        "rev": "7d0c4bc78d9f017a739b0c7eb2f4e563118353e6",
         "type": "gitlab"
       },
       "original": {
@@ -17,20 +17,37 @@
         "type": "gitlab"
       }
     },
+    "devtools-lib": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1766237846,
+        "narHash": "sha256-7n3WFabnf49SFHXD/e4zfLit3BniZZOecUXfBm3d1d0=",
+        "owner": "rensa-nix",
+        "repo": "devtools",
+        "rev": "5c8712f48c5bcb6b79d3da1afd1268f84f5e35e3",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "rensa-nix",
+        "repo": "devtools",
+        "type": "gitlab"
+      }
+    },
     "nix-gitlab-ci-lib": {
       "locked": {
         "dir": "lib",
-        "lastModified": 1756974596,
-        "narHash": "sha256-KxQj76sUqvPNtrqzNWMZeOWqTitc0aFCYj7UZzToiEA=",
+        "lastModified": 1765444672,
+        "narHash": "sha256-B0cMjRs9P50ym9Le0VUcRN69Yy6tbV13MXq81tTTEus=",
         "owner": "TECHNOFAB",
         "repo": "nix-gitlab-ci",
-        "rev": "00cf5b83c6c46698fba12a54b9cc15c6d4e5a4dd",
+        "rev": "8f88a53b5479773cd626420362631bc1da99e677",
         "type": "gitlab"
       },
       "original": {
         "dir": "lib",
         "owner": "TECHNOFAB",
-        "ref": "3.0.0-alpha.2",
+        "ref": "3.1.2",
         "repo": "nix-gitlab-ci",
         "type": "gitlab"
       }
@@ -38,11 +55,11 @@
     "nixmkdocs": {
       "locked": {
         "dir": "lib",
-        "lastModified": 1755785622,
-        "narHash": "sha256-xBb9PCkszmrWSEqUiPC7oBJABm1thF572S5QHtloZ+M=",
+        "lastModified": 1766062227,
+        "narHash": "sha256-jhr5CUi9eDeMIAJn7ayXP8Wr+Y2loV5EhdDIKDkRIdw=",
         "owner": "TECHNOFAB",
         "repo": "nixmkdocs",
-        "rev": "61da605a9bff12f66c4b743f43aea59ca200f533",
+        "rev": "cb0bb5dc3382e8ba5d81324a2f1fd94ccd5a5df4",
         "type": "gitlab"
       },
       "original": {
@@ -55,6 +72,7 @@
     "root": {
       "inputs": {
         "devshell": "devshell",
+        "devtools-lib": "devtools-lib",
         "nix-gitlab-ci-lib": "nix-gitlab-ci-lib",
         "nixmkdocs": "nixmkdocs",
         "soonix-lib": "soonix-lib",
@@ -64,11 +82,11 @@
     "soonix-lib": {
       "locked": {
         "dir": "lib",
-        "lastModified": 1757424411,
-        "narHash": "sha256-x99obZwqDAhUB+VUhAV9sKH00NnsVi481n/8bdvZCUY=",
+        "lastModified": 1766044966,
+        "narHash": "sha256-VB8PgA5QYmehFCGGz8YmlmuhCG43ab9rK9ufdKmfjao=",
         "owner": "TECHNOFAB",
         "repo": "soonix",
-        "rev": "add807ef8980197bbd06652a36d937b93b2a31c7",
+        "rev": "e9860d65a0123af948c1a2da65664a6d481efe05",
         "type": "gitlab"
       },
       "original": {
@@ -81,11 +99,11 @@
     "treefmt-nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1755934250,
-        "narHash": "sha256-CsDojnMgYsfshQw3t4zjRUkmMmUdZGthl16bXVWgRYU=",
+        "lastModified": 1766000401,
+        "narHash": "sha256-+cqN4PJz9y0JQXfAK5J1drd0U05D5fcAGhzhfVrDlsI=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "74e1a52d5bd9430312f8d1b8b0354c92c17453e5",
+        "rev": "42d96e75aa56a3f70cab7e7dc4a32868db28e8fd",
         "type": "github"
       },
       "original": {

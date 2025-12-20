@@ -22,11 +22,13 @@
         (simple "devShells")
         (simple "docs")
         (simple "ci")
+        (simple "soonix")
       ];
     } {
       packages = rensa.select inputs.self [
         ["repo" "docs"]
         ["repo" "ci" "packages"]
+        ["repo" "soonix" "packages"]
       ];
     };
 }

@@ -3,21 +3,67 @@
   cell,
   ...
 }: let
-  inherit (inputs) pkgs dslib soonix treefmt;
-  inherit (cell) ci;
+  inherit (inputs) pkgs dslib treefmt devtools-lib;
+  inherit (cell) soonix;
+  treefmtWrapper = treefmt.mkWrapper pkgs {
+    programs = {
+      alejandra.enable = true;
+      mdformat.enable = true;
+    };
+    settings.formatter.mdformat = {
+      command = let
+        pkg = pkgs.python3.withPackages (p: [
+          p.mdformat
+          p.mdformat-mkdocs
+        ]);
+      in "${pkg}/bin/mdformat";
+      excludes = [
+        "CHANGELOG.md"
+        "*LICENSE*.md"
+      ];
+    };
+  };
 in {
   default = dslib.mkShell {
-    imports = [soonix.devshellModule];
+    imports = [soonix.devshellModule devtools-lib.devshellModule];
     packages = [
-      (treefmt.mkWrapper pkgs {
-        programs = {
-          alejandra.enable = true;
-          mdformat.enable = true;
-        };
-        settings.global.excludes = ["*LICENSE*.md"];
-      })
+      treefmtWrapper
     ];
     enterShellCommands."ren".text = "echo Hello rensa!";
-    soonix.hooks.ci = ci.soonix;
+    lefthook.config = {
+      "pre-commit" = {
+        parallel = true;
+        jobs = [
+          {
+            name = "treefmt";
+            stage_fixed = true;
+            run = "${treefmtWrapper}/bin/treefmt";
+            env.TERM = "dumb";
+          }
+          {
+            name = "soonix";
+            stage_fixed = true;
+            run = "nix run .#soonix:update";
+          }
+        ];
+      };
+    };
+    cocogitto.config = {
+      tag_prefix = "v";
+      ignore_merge_commits = true;
+      changelog = {
+        authors = [
+          {
+            username = "TECHNOFAB";
+            signature = "technofab";
+          }
+        ];
+        path = "CHANGELOG.md";
+        template = "remote";
+        remote = "gitlab.com";
+        repository = "core";
+        owner = "rensa-nix";
+      };
+    };
   };
 }
