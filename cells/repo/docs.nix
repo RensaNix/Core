@@ -31,6 +31,11 @@ in
         };
         nav = [
           {"Introduction" = "index.md";}
+          {"Concepts" = "concepts.md";}
+          {"Tutorial" = "tutorial.md";}
+          {"API Reference" = "api.md";}
+          {"Related Libraries" = "libraries.md";}
+          {"Direnv Integration" = "direnv.md";}
         ];
         markdown_extensions = [
           {
@@ -41,6 +46,7 @@ in
           "pymdownx.superfences"
           "pymdownx.escapeall"
           "fenced_code"
+          "admonition"
         ];
       };
     };
