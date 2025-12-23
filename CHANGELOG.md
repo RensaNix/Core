@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.1.1](https://gitlab.com/rensa-nix/core/compare/558066d8df65242b6e1c7b6fcb62a0a3cf794899..v0.1.1) - 2025-12-23
+#### Bug Fixes
+- (**loader**) infinite recursion error when accessing sibling blocks - ([0d6970d](https://gitlab.com/rensa-nix/core/commit/0d6970d95ae3f5e20046b2cb0ec88d396cc55d9e)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+#### Miscellaneous Chores
+- add LICENSE - ([558066d](https://gitlab.com/rensa-nix/core/commit/558066d8df65242b6e1c7b6fcb62a0a3cf794899)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+
+- - -
+
 ## [v0.1.0](https://gitlab.com/rensa-nix/core/compare/3aeff518bb9ebf0918a0bb013d66ee56fa415033..v0.1.0) - 2025-12-20
 #### Features
 - (**builder**) default to systems from inputs if exists - ([9ea903d](https://gitlab.com/rensa-nix/core/commit/9ea903dde6de65c85532995e5872ad7d2e6e6f5f)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
