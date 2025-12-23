@@ -128,9 +128,27 @@
     inherit (utils) unique accumulate;
 
     loadCell = cellName: let
-      cell = res.output;
       cellP = paths.cellPath cellsFrom cellName;
       cellBlocks' = (unique cellBlocks).result;
+      # fixes `ìnfinite recursion` errors when accessing cell attributes from sibling blocks
+      # example: cells/test/a.nix returns `cell.b`, so the same thing as cells/test/b.nix.
+      # this would previously fail with infinite recursion, this makes it work:
+      cell = l.listToAttrs (l.concatMap (
+          block: let
+            blockP = paths.cellBlockPath cellP block;
+            exists = l.pathExists blockP.file || l.pathExists blockP.dir;
+          in
+            if exists
+            then [
+              {
+                name = block.name;
+                # accessing this value will force the loading of this block
+                value = (l.head (loadCellBlock cellName cellP block)).${block.name};
+              }
+            ]
+            else []
+        )
+        cellBlocks');
       loadCellBlock = createCellBlockLoader {inherit inputs system cells cell transformInputs;};
       res = accumulate (l.map (loadCellBlock cellName cellP) cellBlocks');
     in [

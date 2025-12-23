@@ -19,6 +19,7 @@
       cellsFrom = ./cells;
       cellBlocks = with rensa.blocks; [
         (simple "test")
+        (simple "other")
         (simple "devShells")
         (simple "docs")
         (simple "ci")
