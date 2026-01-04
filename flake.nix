@@ -24,12 +24,14 @@
         (simple "docs")
         (simple "ci")
         (simple "soonix")
+        (simple "tests")
       ];
     } {
       packages = rensa.select inputs.self [
         ["repo" "docs"]
         ["repo" "ci" "packages"]
         ["repo" "soonix" "packages"]
+        ["repo" "tests"]
       ];
     };
 }
