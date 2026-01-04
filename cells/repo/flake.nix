@@ -5,6 +5,7 @@
     soonix-lib.url = "gitlab:TECHNOFAB/soonix?dir=lib";
     nix-gitlab-ci-lib.url = "gitlab:TECHNOFAB/nix-gitlab-ci/3.1.2?dir=lib";
     devtools-lib.url = "gitlab:rensa-nix/devtools?dir=lib";
+    nixtest-lib.url = "gitlab:TECHNOFAB/nixtest/v1.2.1?dir=lib";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       flake = false;
@@ -18,6 +19,8 @@
       doclib = i.nixmkdocs.lib {inherit (i.parent) pkgs;};
       soonix = i.soonix-lib.lib {inherit (i.parent) pkgs;};
       cilib = i.nix-gitlab-ci-lib.lib {inherit (i.parent) pkgs;};
+      ntlib = i.nixtest-lib.lib {inherit (i.parent) pkgs;};
+      rensa = import "${i.parent.self}/lib" {inherit (i.parent.pkgs) lib;};
       treefmt = import i.treefmt-nix;
     };
 }

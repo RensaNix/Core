@@ -69,12 +69,31 @@
         "type": "gitlab"
       }
     },
+    "nixtest-lib": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1765728058,
+        "narHash": "sha256-V3FXECl1oTxEtGteNz3o3GJs/X8asSn1TxRpZ2F+htU=",
+        "owner": "TECHNOFAB",
+        "repo": "nixtest",
+        "rev": "2477ad31ae3aa4134e1bb5eeddbebe0cb64ccb57",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "lib",
+        "owner": "TECHNOFAB",
+        "ref": "v1.2.1",
+        "repo": "nixtest",
+        "type": "gitlab"
+      }
+    },
     "root": {
       "inputs": {
         "devshell": "devshell",
         "devtools-lib": "devtools-lib",
         "nix-gitlab-ci-lib": "nix-gitlab-ci-lib",
         "nixmkdocs": "nixmkdocs",
+        "nixtest-lib": "nixtest-lib",
         "soonix-lib": "soonix-lib",
         "treefmt-nix": "treefmt-nix"
       }
