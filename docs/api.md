@@ -8,7 +8,7 @@ The main entry point for creating a Rensa flake.
 
 - `inputs`: The flake inputs.
 - `cellsFrom`: Path to the directory containing your cells.
-- `cellBlocks`: A list of blocks to load for each cell.
+- `cellBlocks`: A list of blocks to load for each cell. Defaults to `[rensa.blocks.autodiscover]`.
 - `transformInputs` (optional): A function to transform inputs before they are passed to cells.
 
 ### Returns
@@ -23,7 +23,7 @@ The underlying builder function used by `buildWith`. It returns the raw Rensa ou
 
 - `inputs`: The flake inputs.
 - `cellsFrom`: Path to the directory containing your cells.
-- `cellBlocks`: A list of blocks to load for each cell.
+- `cellBlocks`: A list of blocks to load for each cell. Defaults to `[rensa.blocks.autodiscover]`.
 - `transformInputs` (optional): A function to transform inputs.
 
 ### Returns
@@ -55,6 +55,45 @@ Creates a block definition for dynamic content. This allows integration of the `
 by passing through actions etc. from a cell.
 
 Currently not really used.
+
+### `autodiscover`
+
+```nix
+autodiscover
+# or
+(autodiscover "cellName")
+```
+
+Automatically discovers and loads all cell blocks by scanning the cells directory for `.nix` files.
+When `autodiscover` is present in `cellBlocks`, Rensa will:
+
+1. Walk through all cells in `cellsFrom` (or specific cell if provided).
+1. Find all `.nix` files (excluding `flake.nix`).
+1. Find all directories containing `default.nix`.
+1. Generate `simple` block definitions for each discovered block.
+
+**Usage patterns:**
+
+```nix
+# full autodiscovery
+cellBlocks = with rensa.blocks; [
+  autodiscover
+];
+# or
+cellBlocks = with rensa.blocks; [
+  (autodiscover "backend")  # only discover blocks from backend cell
+  (autodiscover "frontend") # only discover blocks from frontend cell
+];
+# mixed
+cellBlocks = with rensa.blocks; [
+  (simple "myBlock")  # explicit block (takes precedence)
+  autodiscover        # discover all others
+];
+```
+
+!!! note
+
+    When a block is both explicitly defined and discovered, the explicit definition takes precedence.
 
 ## `rensa.select`
 

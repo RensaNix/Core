@@ -33,14 +33,18 @@
             }).outputs
           else {};
       in
-        importSignatureFor system updatedCell cells additionalInputs;
+        builtins.addErrorContext "[ren] while getting input signature for ${blockP}" (
+          importSignatureFor system updatedCell cells additionalInputs
+        );
 
       import' = importPath: let
         block = import importPath;
       in
         if l.typeOf block == "set"
         then block
-        else block signature;
+        else
+          builtins.addErrorContext "[ren] while importing block at ${importPath}"
+          (block signature);
 
       importPaths =
         if isFile
@@ -101,18 +105,20 @@
     in
       optionalLoad (isFile || isDir) (
         assert l.assertMsg isAttrs "cell block does not return an attrset: ${importPaths.displayPath}";
-          l.traceVerbose "[ren] loading cell block ${cellBlock.name}, type ${cellBlock.type}, from cell ${cellP}"
-          [
-            {${cellBlock.name} = imported;}
-            {${cellBlock.name} = l.mapAttrs (_: set: set.actions) extracted;}
-            ({
-                cellBlock = cellBlock.name;
-                blockType = cellBlock.type;
-                targets = l.mapAttrsToList (_: set: set.init) extracted;
-              }
-              // (l.optionalAttrs (l.pathExists blockP.readmeDir) {readme = blockP.readmeDir;})
-              // (l.optionalAttrs (l.pathExists blockP.readme) {inherit (blockP) readme;}))
-          ]
+          l.traceVerbose "[ren] loading cell block ${cellBlock.name}, type ${cellBlock.type}, from cell ${cellP}, for system ${system}" (
+            builtins.addErrorContext "[ren] loading cell block ${cellBlock.name}, type ${cellBlock.type}, from cell ${cellP}, for system ${system}"
+            [
+              {${cellBlock.name} = imported;}
+              {${cellBlock.name} = l.mapAttrs (_: set: set.actions) extracted;}
+              ({
+                  cellBlock = cellBlock.name;
+                  blockType = cellBlock.type;
+                  targets = l.mapAttrsToList (_: set: set.init) extracted;
+                }
+                // (l.optionalAttrs (l.pathExists blockP.readmeDir) {readme = blockP.readmeDir;})
+                // (l.optionalAttrs (l.pathExists blockP.readme) {inherit (blockP) readme;}))
+            ]
+          )
       );
   in
     loadCellBlock;
@@ -133,7 +139,7 @@
       # fixes `ìnfinite recursion` errors when accessing cell attributes from sibling blocks
       # example: cells/test/a.nix returns `cell.b`, so the same thing as cells/test/b.nix.
       # this would previously fail with infinite recursion, this makes it work:
-      cell = l.listToAttrs (l.concatMap (
+      cell = builtins.addErrorContext "[ren] while accessing cell '${cellName}' siblings" (l.listToAttrs (l.concatMap (
           block: let
             blockP = paths.cellBlockPath cellP block;
             exists = l.pathExists blockP.file || l.pathExists blockP.dir;
@@ -148,18 +154,19 @@
             ]
             else []
         )
-        cellBlocks');
+        cellBlocks'));
       loadCellBlock = createCellBlockLoader {inherit inputs system cells cell transformInputs;};
       res = accumulate (l.map (loadCellBlock cellName cellP) cellBlocks');
-    in [
-      {${cellName} = res.output;}
-      {${cellName} = res.actions;}
-      ({
-          cell = cellName;
-          cellBlocks = res.init;
-        }
-        // (l.optionalAttrs (l.pathExists cellP.readme) {inherit (cellP) readme;}))
-    ];
+    in
+      builtins.addErrorContext "[ren] while loading cell ${cellName}" [
+        {${cellName} = res.output;}
+        {${cellName} = res.actions;}
+        ({
+            cell = cellName;
+            cellBlocks = res.init;
+          }
+          // (l.optionalAttrs (l.pathExists cellP.readme) {inherit (cellP) readme;}))
+      ];
   in
     loadCell;
 in {

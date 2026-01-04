@@ -2,6 +2,8 @@
   l,
   utils,
   loader,
+  autodiscover,
+  blocks,
 }: let
   inherit (utils) accumulate;
   inherit (loader) createCellLoader;
@@ -9,7 +11,7 @@
   build = {
     inputs,
     cellsFrom,
-    cellBlocks,
+    cellBlocks ? [blocks.autodiscover],
     transformInputs ? system: i: i,
     ...
   } @ args: let
@@ -28,26 +30,31 @@
         ]
       );
 
+    cellBlocks' = autodiscover {inherit l cellsFrom cellBlocks;};
+
     cells = res.output;
 
     loadOutputFor = system: let
       loadCell = createCellLoader {
-        inherit inputs system cells cellsFrom cellBlocks transformInputs;
+        inherit inputs system cells cellsFrom transformInputs;
+        cellBlocks = cellBlocks';
       };
 
       cells' = l.mapAttrsToList (cell: type: cell) (l.readDir cellsFrom);
       res = accumulate (l.map loadCell cells');
-    in [
-      {${system} = res.output;}
-      {${system} = res.actions;}
-      {
-        name = system;
-        value = res.init;
-      }
-    ];
+    in
+      builtins.addErrorContext "[ren] while loading output for ${system}" [
+        {${system} = res.output;}
+        {${system} = res.actions;}
+        {
+          name = system;
+          value = res.init;
+        }
+      ];
 
     res = accumulate (l.map loadOutputFor systems);
   in
+    builtins.addErrorContext "[ren] while building rensa output"
     res.output
     // {
       __ren = {
@@ -89,10 +96,12 @@
     recursiveUpdate = lhs: rhs:
       recursiveUpdateUntil g lhs rhs;
   in
-    build args
-    // {
-      __functor = l.flip recursiveUpdate;
-    };
+    builtins.addErrorContext "[ren] while building rensa output (buildWith)" (
+      build args
+      // {
+        __functor = l.flip recursiveUpdate;
+      }
+    );
 in {
   inherit build buildWith;
 }
