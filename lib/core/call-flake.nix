@@ -112,4 +112,5 @@ ref: inputOverrides: let
     )
     lockFile.nodes;
 in
+  builtins.addErrorContext "[ren] while loading flake lockfile ${ref}"
   allNodes.${lockFile.root}

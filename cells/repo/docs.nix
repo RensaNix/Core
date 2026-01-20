@@ -36,6 +36,7 @@ in
           {"API Reference" = "api.md";}
           {"Related Libraries" = "libraries.md";}
           {"Direnv Integration" = "direnv.md";}
+          {"Debugging" = "debugging.md";}
         ];
         markdown_extensions = [
           {
