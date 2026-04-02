@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.2.0](https://gitlab.com/rensa-nix/core/compare/50c71a227887c747d9b9a00c259450e5605f1d66..v0.2.0) - 2026-04-02
+#### Features
+- add autodiscovery for cell blocks - ([50d96d4](https://gitlab.com/rensa-nix/core/commit/50d96d43ce48aefd51b202940a5bbf8450251fd6)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+#### Tests
+- add autodiscovery test - ([c8ae0ce](https://gitlab.com/rensa-nix/core/commit/c8ae0ceb2e48d0dfc38a85e52b50d9c66d5c6ee6)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+#### Miscellaneous Chores
+- (**deps**) lock file maintenance - ([50c71a2](https://gitlab.com/rensa-nix/core/commit/50c71a227887c747d9b9a00c259450e5605f1d66)) - Renovate Bot
+- add ci job for tests - ([1d63c19](https://gitlab.com/rensa-nix/core/commit/1d63c19f2aeda5e5d223783ff4b215ad0548058c)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+- add nixtest for testing and a couple of tests - ([e6c1329](https://gitlab.com/rensa-nix/core/commit/e6c13290bb9dd9b3f8cd49098875a346db9bf6dc)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+
+- - -
+
 ## [v0.1.1](https://gitlab.com/rensa-nix/core/compare/558066d8df65242b6e1c7b6fcb62a0a3cf794899..v0.1.1) - 2025-12-23
 #### Bug Fixes
 - (**loader**) infinite recursion error when accessing sibling blocks - ([0d6970d](https://gitlab.com/rensa-nix/core/commit/0d6970d95ae3f5e20046b2cb0ec88d396cc55d9e)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
