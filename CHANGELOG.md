@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.2.1](https://gitlab.com/rensa-nix/core/compare/2afd6a5c2fd77395de962859e2f016ab62e936bd..v0.2.1) - 2026-10-07
+#### Miscellaneous Chores
+- (**builder**) remove x86_64-darwin from default systems - ([1dc1dda](https://gitlab.com/rensa-nix/core/commit/1dc1ddaa09f39350181c04ce4e839ee6ae24122b)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+- update flake inputs - ([a06d13e](https://gitlab.com/rensa-nix/core/commit/a06d13e5b52a8496537c9fa572f7c01d599cdfbd)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+- pin flake input versions - ([2afd6a5](https://gitlab.com/rensa-nix/core/commit/2afd6a5c2fd77395de962859e2f016ab62e936bd)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+
+- - -
+
 ## [v0.2.0](https://gitlab.com/rensa-nix/core/compare/50c71a227887c747d9b9a00c259450e5605f1d66..v0.2.0) - 2026-04-02
 #### Features
 - add autodiscovery for cell blocks - ([50d96d4](https://gitlab.com/rensa-nix/core/commit/50d96d43ce48aefd51b202940a5bbf8450251fd6)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
