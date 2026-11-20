@@ -29,6 +29,9 @@
               root = {
                 parent = transformInputs system inputs;
                 inherit system;
+                _ren = {
+                  inherit callFlake;
+                };
               };
             }).outputs
           else {};
