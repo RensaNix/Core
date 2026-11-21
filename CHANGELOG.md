@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.2.2](https://gitlab.com/rensa-nix/core/compare/e05ed00cf10afe5c3e754c0787cb372d9007996e..v0.2.2) - 2026-11-20
+#### Miscellaneous Chores
+- (**loader**) expose callFlake to nested flakes - ([94bca20](https://gitlab.com/rensa-nix/core/commit/94bca207e04a1251a798535e087a0e2d212a0dc3)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+- update nixmkdocs to fix bug - ([e05ed00](https://gitlab.com/rensa-nix/core/commit/e05ed00cf10afe5c3e754c0787cb372d9007996e)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
+
+- - -
+
 ## [v0.2.1](https://gitlab.com/rensa-nix/core/compare/2afd6a5c2fd77395de962859e2f016ab62e936bd..v0.2.1) - 2026-10-07
 #### Miscellaneous Chores
 - (**builder**) remove x86_64-darwin from default systems - ([1dc1dda](https://gitlab.com/rensa-nix/core/commit/1dc1ddaa09f39350181c04ce4e839ee6ae24122b)) - [@TECHNOFAB](https://gitlab.com/TECHNOFAB)
